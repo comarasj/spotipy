@@ -9,5 +9,4 @@ class ArtistPlaylistForm(Form):
     artist4 = TextField("Artist 4")
     artist5 = TextField("Artist 5")
     length = RadioField('Playlist Length', choices = [('S','short'),('L','Long')])
-    #submit = SubmitField("Submit")
 

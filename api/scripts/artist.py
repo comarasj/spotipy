@@ -13,11 +13,12 @@ def get_id(spotifyObject, name):
     '''
     artist = spotifyObject.search(q='artist:' + name, type='artist')
     artist_pop = 0
-    for i in artist['artists']['items']:
-        if i['popularity'] > artist_pop:
-            artist_id = i['id']
-            artist_pop = i['popularity']
-    return artist_id
+    if artist['artists']['items']:
+        for i in artist['artists']['items']:
+            if i['popularity'] > artist_pop:
+                artist_id = i['id']
+                artist_pop = i['popularity']
+        return artist_id
 
 
 def get_rel_id(spotifyObject, id):

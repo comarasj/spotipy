@@ -31,7 +31,9 @@ def main(playlist_name, artists):
         sp = spotipy.Spotify(auth=token)
         sp.trace = False
         for i in artists:
-            artist_ids.append(artist.get_id(spotifyObject, i))
+            id = artist.get_id(spotifyObject, i)
+            if id:
+                artist_ids.append(id)
         for id in artist_ids:
             all_artists.append(id)
             rel_artists.append(artist.get_rel_id(spotifyObject, id))
@@ -48,7 +50,6 @@ def main(playlist_name, artists):
                     dup_tracks.append(uri)
                     all_tracks.append(uri)
         
-        print(all_tracks)
         return playlist.make_playlist(spotifyObject, settings.user, all_tracks, playlist_name, True)
         # playlists = sp.user_playlist_create(settings.user, playlist_name, public=False)
 
