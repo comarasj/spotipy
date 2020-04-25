@@ -1,8 +1,7 @@
 from flask import Blueprint, render_template, abort, request
 from flask_wtf import FlaskForm
-#from forms import ArtistPlaylistForm
-
 from scripts import generator
+import csv
 
 
 artist = Blueprint('artist', __name__, template_folder='templates')
@@ -35,6 +34,11 @@ def submit_here():
             artists.append(artist5)
         playlist_url = generator.main(name, artists)
         
-        return render_template('playlist.html', name=name, playlist_url=playlist_url)
+        row = [ name, playlist_url ]
+        with open( 'playlist.csv', 'a+', newline='' ) as fd:
+            csv_writer = csv.writer( fd )
+            csv_writer.writerow( row )
+        
+        return render_template( 'playlist.html', name=name, playlist_url=playlist_url )
     else:
         pass

@@ -1,0 +1,8 @@
+<div> 
+    <h2>Recent Created Playlists: </h2>
+    <ul style="list-style-type:none;">
+        {%for i in range(0, len)%} 
+        <li><a href={{playlists_url[i]}}>{{playlists_name[i]}}</a></li> 
+        {%endfor%} 
+    </ul>
+</div>

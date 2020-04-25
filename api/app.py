@@ -3,11 +3,13 @@ app = Flask(__name__)
 app.secret_key = 'development key'
 
 #Blueprints
-from artist.artist import artist
-from recommended.recommended import recommended
+from blueprints.artist.artist import artist
+from blueprints.recommended.recommended import recommended
+from blueprints.recent.recent import recent
 
-app.register_blueprint(artist, url_prefix='/artist')
-app.register_blueprint(recommended, url_prefix='/recommended')
+app.register_blueprint( artist, url_prefix='/artist' )
+app.register_blueprint( recommended, url_prefix='/recommended' )
+app.register_blueprint( recent, url_prefix='/recent' )
 
 @app.route('/')
 def index():
@@ -19,4 +21,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(host='192.168.200.194', port='5000', debug=True)
+    app.run(host='localhost', port='5000', debug=True)
